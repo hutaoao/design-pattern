@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .dialog {
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+<button id="loginBtn">登录</button>
+<button id="registerBtn">注册</button>
+</body>
+<script>
+  // 单例
+  function getSingle(fn) {
+    let result;
+    return function () {
+      if (!result) {
+        result = fn.apply(this, arguments)
+      }
+      return result;
+    }
+  }
+
+  // 创建登录弹窗
+  function createLoginDialog(text) {
+    let div = document.createElement('div');
+    div.innerHTML = text;
+    div.className = 'dialog';
+    div.style.display = 'none';
+    document.body.appendChild(div);
+    return div;
+  }
+
+  // 创建注册弹窗
+  function createRegisterDialog(text) {
+    let div = document.createElement('div');
+    div.innerHTML = text;
+    div.className = 'dialog';
+    div.style.display = 'none';
+    document.body.appendChild(div);
+    return div;
+  }
+
+  let createSingleLoginDialog = getSingle(createLoginDialog);
+  let createSingleRegisterDialog = getSingle(createRegisterDialog);
+
+  document.getElementById('loginBtn').onclick = function () {
+    let loginLayer = createSingleLoginDialog('我是登录弹窗');
+    loginLayer.style.display = 'block';
+  };
+
+  document.getElementById('registerBtn').onclick = function () {
+    let loginLayer = createSingleRegisterDialog('我是注册弹窗');
+    loginLayer.style.display = 'block';
+  };
+</script>
+</html>

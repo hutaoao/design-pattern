@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .dialog {
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+<button id="loginBtn">登录</button>
+</body>
+<script>
+  let createLoginLayer = function () {
+    let div = document.createElement('div');
+    div.className = 'dialog';
+    div.innerHTML = '我是登录浮窗';
+    div.style.display = 'none';
+    document.body.appendChild(div);
+    return div;
+  };
+  document.getElementById('loginBtn').onclick = function () {
+    let loginLayer = createLoginLayer();
+    loginLayer.style.display = 'flex';
+  };
+</script>
+</html>
